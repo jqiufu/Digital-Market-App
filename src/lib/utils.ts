@@ -51,7 +51,7 @@ export function constructMetadata({
     },
     icons,
     metadataBase: new URL(
-      'https://digital-marketplace-app-production.up.railway.app'
+      'https://digital-market-app.up.railway.app'
     ),
     ...(noIndex && {
       robots: {
