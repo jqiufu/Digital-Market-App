@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import MaxWidthWrapper from './MaxWidthWrapper';
 import { Icons } from './Icons';
 import Link from 'next/link';
+import { buttonVariants } from './ui/button';
 
 const Footer = () => {
   const pathname = usePathname();
@@ -49,6 +50,17 @@ const Footer = () => {
               </div>
             </div>
           )}
+        </div>
+
+        <div className="mt-10 flex justify-center">
+          <a
+            href="https://www.freepik.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={buttonVariants({ variant: 'secondary', size: 'sm' })}
+          >
+            Images downloaded from Freepik
+          </a>
         </div>
 
         <div className="py-10 md:flex md:items-center md:justify-between">
