@@ -45,12 +45,14 @@ export const getPayloadClient = async ({
   }
 
   if (!cached.promise) {
+    const email = {
+      fromName: 'DigMark',
+      fromAddress: resendFromEmail,
+      transport: transporter
+    };
+
     cached.promise = payload.init({
-      email: {
-        transport: transporter,
-        fromAddress: resendFromEmail,
-        fromName: 'DigMark'
-      },
+      email,
       secret: process.env.PAYLOAD_SECRET,
       local: initOptions?.express ? false : true,
       ...(initOptions || {})
