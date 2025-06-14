@@ -18,6 +18,8 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+const resendFromEmail = process.env.RESEND_FROM_EMAIL || '';
+
 let cached = (global as any).payload;
 
 if (!cached) {
@@ -46,7 +48,7 @@ export const getPayloadClient = async ({
     cached.promise = payload.init({
       email: {
         transport: transporter,
-        fromAddress: process.env.RESEND_FROM_EMAIL || '',
+        fromAddress: resendFromEmail,
         fromName: 'DigMark'
       },
       secret: process.env.PAYLOAD_SECRET,
