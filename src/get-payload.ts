@@ -8,6 +8,8 @@ dotenv.config({
   path: path.resolve(__dirname, '../.env')
 });
 
+const fromEmail = process.env.RESEND_FROM_EMAIL as string;
+
 const transporter = nodemailer.createTransport({
   host: 'smtp.resend.com',
   secure: true,
@@ -46,7 +48,7 @@ export const getPayloadClient = async ({
     cached.promise = payload.init({
       email: {
         transport: transporter,
-        fromAddress: 'no-reply@jqiuprojects.site',
+        fromAddress: fromEmail,
         fromName: 'DigMark'
       },
       secret: process.env.PAYLOAD_SECRET,

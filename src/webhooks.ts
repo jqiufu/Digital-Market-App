@@ -8,6 +8,7 @@ import { Resend } from 'resend';
 import { ReceiptEmailHtml } from './components/emails/ReceiptEmail';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+const resendFromEmail = process.env.RESEND_FROM_EMAIL as string;
 
 export const stripeWebhookHandler = async (
   req: express.Request,
@@ -83,7 +84,7 @@ export const stripeWebhookHandler = async (
     // send receipt
     try {
       const data = await resend.emails.send({
-        from: 'no-reply@jqiuprojects.site',
+        from: resendFromEmail,
         to: [user.email],
         subject: 'Thanks for your order! This is your receipt.',
         html: ReceiptEmailHtml({
